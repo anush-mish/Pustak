@@ -1,8 +1,7 @@
 // index.js
-
-const express = require('express');
-const connectDB = require('./db');
-const authRoutes = require('./routes/authRoutes');
+import connectDB from './config/db.js';
+import express from 'express';
+import authRoutes from './routes/authRoutes.js';
 
 const app = express();
 
@@ -10,7 +9,8 @@ const app = express();
 connectDB();
 
 // Middleware
-app.use(express.json({ extended: false }));
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
 
 // Routes
 app.use('/api/auth', authRoutes);
